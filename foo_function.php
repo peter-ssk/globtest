@@ -17,19 +17,15 @@ function foo(array ...$intervals) :array
     // Fusion des intervalles
     $result = array();
     $fIndex = 0;
-    for($i = 0; $i < count($intervals); $i++) {
-        if(count($intervals[$i]) !== 2) {
-            throw new Exception("Les tableaux d'intervalles doivent avoir 2 valeurs");
+    while($interval = array_shift($intervals)) {
+        if(count($interval) !== 2 || !is_int($interval[0]) || !is_int($interval[1])) {
+            throw new Exception("Intervalles invalides");
         }
-        if(!is_int($intervals[$i][0]) || !is_int($intervals[$i][1])) {
-            throw new Exception("Les valeurs des tableaux d'intervalles doivent être des entiers");
-        }
-
         // Si l'intervalle de fusion chevauche l'intervalle courant, on le fusionne
-        if(isset($result[$fIndex]) && $result[$fIndex][1] >= $intervals[$i][0]) {
-            $result[$fIndex][1] = max($result[$fIndex][1], $intervals[$i][1]);
+        if(isset($result[$fIndex]) && $result[$fIndex][1] >= $interval[0]) {
+            $result[$fIndex][1] = max($result[$fIndex][1], $interval[1]);
         } else {
-            $result[] = $intervals[$i];
+            $result[] = $interval;
             $fIndex = count($result) - 1;
         }
     }
@@ -45,11 +41,11 @@ function foo(array ...$intervals) :array
  */
 function print_intervals(array $intervals) :void
 {
-    $res = "";
-    foreach($intervals as $interval) {
-        $res .= "[{$interval[0]}, {$interval[1]}] ";
-    }
-    echo $res.PHP_EOL;
+    $res = array_map(function (array $interval) {
+        return "[{$interval[0]},{$interval[1]}]";
+    }, $intervals);
+
+    echo implode(' ', $res).PHP_EOL;
 }
 
 try {

@@ -38,6 +38,7 @@ Merci de fournir un fichier contenant :
 
 - entre 40 et 50 minutes
 - +4 minutes pour l'affichage des jeux de tests
+- +7 minutes de refactoring final
 
 Fonctionne avec PHP 7 et au dessus :
 ```bash
