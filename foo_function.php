@@ -51,3 +51,20 @@ function print_intervals(array $intervals) :void
     }
     echo $res.PHP_EOL;
 }
+
+try {
+    $tests = array(
+        [ [0, 3], [6, 10] ],
+        [ [0, 5], [3, 10] ],
+        [ [0, 5], [2, 4] ],
+        [ [7, 8], [3, 6], [2, 4] ],
+        [ [3, 6], [3, 4], [15, 20], [16, 17], [1, 4], [6, 10], [3, 6] ]
+    );
+
+    // Jeux de tests
+    foreach ($tests as $test) {
+        print_intervals(foo(...$test));
+    }
+} catch (Exception $e) {
+    echo $e->getMessage().PHP_EOL;
+}
