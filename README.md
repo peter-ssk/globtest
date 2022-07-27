@@ -34,7 +34,9 @@ Merci de fournir un fichier contenant :
 
 ### Question 3
 
-Précisez en combien de temps vous avez implémenté cette fonction.
+***Précisez en combien de temps vous avez implémenté cette fonction.***
+
+- entre 40 et 50 minutes 
 
 ## Merci
 
